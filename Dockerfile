@@ -19,8 +19,10 @@ EXPOSE 8080
 # within container
 RUN sudo apt-get update && sudo apt-get install -y vim
 
-COPY web_examples . 
+COPY web_examples ./
+USER root
 RUN chmod 755 web_examples 
+USER opam
 
 CMD bash
 
