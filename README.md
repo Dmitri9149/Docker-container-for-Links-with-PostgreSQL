@@ -105,4 +105,69 @@ linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
 ```
 ###############
 
+As an example of using the environment,  from the current folder we did : 
+$mkdir links_examples
+$touch todo.links
+
+We can make the todo.links file with the content (the well known todo web application), 
+there is front end and back end parts in the file, both will be started by execution the 
+main() function. The example is from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links 
+
+```
+fun remove(item, items) {
+  switch (items) {
+     case []    -> []
+     case x::xs -> if (item == x) xs
+                   else x::remove(item, xs)
+  }
+}
+
+
+fun todo(items) {
+   <html>
+    <body>
+     <form l:onsubmit="{replaceDocument(todo(item::items))}">
+       <input l:name="item"/>
+       <button type="submit">Add item</button>
+     </form>
+     <table>
+      {for (item <- items)
+        <tr><td>{stringToXml(item)}</td>
+            <td><form l:onsubmit="{replaceDocument(todo(remove(item,items)))}">
+                 <button type="submit">Completed</button>
+                </form>
+            </td>
+        </tr>}
+      </table>
+     </body>
+   </html>
+}
+
+fun mainPage(_) {
+  page
+   <#>{todo(["add items to todo list"])}</#>}
+
+fun main () {
+ addRoute("",mainPage);
+ servePages()
+}
+
+main()
+
+```
+Run the container with the mount : 
+```
+dmitri@dmitri-Aspire-A314-32:~/docker_linx$ sudo docker run -v $(pwd)/links_examples:/links_examples  -it -p 8080:8080 links_2
+ * Restarting PostgreSQL 10 database server                                                             [ OK ]
+```
+
+And from within running container : 
+```
+opam@98da55efced9:~/opam-repository/links_folder$ linx /links_examples/todo.links
+
+```
+
+The todo app will start at localhost:8080
+
+
 
