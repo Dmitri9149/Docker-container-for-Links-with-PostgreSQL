@@ -1,0 +1,5 @@
+#!/bin/bash
+
+linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
+     --path=$OPAM_SWITCH_PREFIX/share/links/examples/games \
+            $OPAM_SWITCH_PREFIX/share/links/examples/webserver/examples-nodb.links
