@@ -19,7 +19,8 @@ EXPOSE 8080
 # within container
 RUN sudo apt-get update && sudo apt-get install -y vim
 
-CMD linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
-         --path=$OPAM_SWITCH_PREFIX/share/links/examples/games \
-                $OPAM_SWITCH_PREFIX/share/links/examples/webserver/examples-nodb.links
+COPY web_examples . 
+RUN chmod 755 web_examples 
+
+CMD bash
 
