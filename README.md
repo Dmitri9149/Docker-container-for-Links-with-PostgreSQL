@@ -38,7 +38,7 @@ https://github.com/links-lang/links/blob/master/INSTALL.md ; https://github.com/
 In the https://github.com/links-lang/links-tutorial it is recommended to install the Links to VirtualBox 
 (with Vagrant to automate the process).
 
-Here we to make Docker environment for Links. It is good to visit the above mentioned referencies and the language manual : https://links-lang.org/quick-help.html
+Here we make Docker environment for Links. It is good to visit the above mentioned referencies and the language manual : https://links-lang.org/quick-help.html
 
 See also comments in the Dockerfile.
 
@@ -46,17 +46,17 @@ We start FROM  opam/ocaml2 https://hub.docker.com/r/ocaml/opam2/ and add needed 
 
 Using postgres credential we make new database with name 'links' and move all the credentials to 'opam' user. 
 
-THE PASSWORD IS HARD CODED IN THE CONTAINER. IT WILL BE BETTER IF YOU REBUILD THE IMAGE FROM 
+THE PASSWORD IS HARD CODED IN THE Dockerfile. IT WILL BE BETTER IF YOU REBUILD THE IMAGE FROM 
 Dockerfile CHANGING TO YOUR PASSWORD IN THE CODE OF Dockerfile (IN 2 PLACES). THE PASSWORD IN SAVED IN config FILE IN links_folder.
 
 The environment is for the learning, not for a production. 
 
 Within container you may do :  
 $linx
-to start the interctive environment. 
+to start the interctive environment.   
 With  
 $linx --config=config   
-you may test the database created. See the session below. 
+you may start interactive session within container and test the database created. See the session below. 
 
 ```
 opam@4a6f01f282e5:~/opam-repository/links_examples$ linx --config=config
@@ -82,15 +82,15 @@ Executing the  script within container:
 $./web_examples 
 
 tutorial Links web examples (without database) will be awailable on your specified localhost port 
-(we expect you run the container with something like 
-$docker run -it -p 8080:8080 image_name
+(we expect you run the container with something like   
+$docker run -it -p 8080:8080 image_name  
 ) 
 
 The full set of examples is awaiable at Links language official web page : https://links-lang.org/
 (Demo programms).
 
-Below is the script. 
-##########
+Below is the script (see https://github.com/links-lang/links/wiki/Database-setup )
+-------------------------------
 ```
 #!/bin/bash
 
@@ -101,11 +101,12 @@ linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
 ```
 ---------------------------------------
 
-As an example of using the environment, from the current folder we did: 
-$mkdir links_examples
-$touch todo.links
+As an example of using the environment, from the current folder we did:  
+$mkdir links_examples 
+$touch links_examples/todo.links
 
-And we add the code from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links 
+And we add the code from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links  to local links_examples/todo.links file.  
+See the code (quite dense, about 40 libes only, front end + server)  
 
 ```
 fun remove(item, items) {
@@ -149,7 +150,7 @@ fun main () {
 main()
 
 ```
-From your machine run : 
+From your machine run something like: 
 ```
 dmitri@dmitri-Aspire-A314-32:~/docker_linx$ sudo docker run -v $(pwd)/links_examples:/links_examples  -it -p 8080:8080 links_2
  * Restarting PostgreSQL 10 database server                                                             [ OK ]
