@@ -1,11 +1,9 @@
 ### Dockerize Links language learning environment (with PostgreSQL) 
 
-The Links language is very interesting and has many advanced features. 
-Ii is possible to make web development from within one language with very dense code, computation with effects and support of asynchronous session types. The Links is potentially very attractive for applications in AI. The big part of 
+The Links language  has many advanced features. 
+It is possible to make web development from within one language with very dense code, computation with effects and there is support of asynchronous session types. The Links is potentially very attractive for applications in AI. The big part of 
 AI is about the communication of many agents and is to be abstracted (as much as possible) from the 
-specific details of  web , networks, JavasSript, Java, HTML etc. 
-The level of Links abstraction is quite high. For example HTML forms and data bases are first class 
-citizens. 
+specific details of  web , networks, JavasSript, Java, HTML etc. Links development is in the direction. 
 
 #### The short description of the Links from the language developers (see from https://github.com/links-lang/links)
 
@@ -40,9 +38,9 @@ https://github.com/links-lang/links/blob/master/INSTALL.md ; https://github.com/
 In the https://github.com/links-lang/links-tutorial it is recommended to install the Links to VirtualBox 
 (with Vagrant to automate the process).
 
-Here we try to make Docker environment. It is good to visit the above mentioned referencies and the language manual : https://links-lang.org/quick-help.html
+Here we to make Docker environment for Links. It is good to visit the above mentioned referencies and the language manual : https://links-lang.org/quick-help.html
 
-Comments in Dockerfile may also help. 
+See also comments in the Dockerfile.
 
 We start FROM  opam/ocaml2 https://hub.docker.com/r/ocaml/opam2/ and add needed packages. 
 
@@ -53,11 +51,11 @@ Dockerfile CHANGING TO YOUR PASSWORD IN THE CODE OF Dockerfile (IN 2 PLACES). TH
 
 The environment is for the learning, not for a production. 
 
-Within container you may do :
+Within container you may do :  
 $linx
 to start the interctive environment. 
-With 
-$linx --config=config 
+With  
+$linx --config=config   
 you may test the database created. See the session below. 
 
 ```
