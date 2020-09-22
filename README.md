@@ -102,7 +102,7 @@ linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
 ```
 ---------------------------------------
 
-As an example of using the environment, from the current folder we did:  
+As an example of using the environment, from the project folder we did:  
 $mkdir links_examples 
 $touch links_examples/todo.links
 
