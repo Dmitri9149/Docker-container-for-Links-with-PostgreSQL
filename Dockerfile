@@ -27,6 +27,8 @@ COPY web_examples ./
 USER root
 RUN chmod 755 web_examples 
 
+
+# see https://github.com/links-lang/links/blob/master/INSTALL.md
 # this code using postgres credentials 
 # create database with name 'links'; create user 'opam' ;
 # (change 'secret_password' to your password in the code !!!)
