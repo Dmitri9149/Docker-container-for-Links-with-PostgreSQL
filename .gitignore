@@ -73,10 +73,3 @@ config
 install.inc
 ####################################
 
-
-# Docker
-.dockerignore
-
-
-
-
