@@ -48,7 +48,7 @@ The username is 'opam' (ubuntu).
 Using postgres credential we make new database with name 'links' and create new 'opam' user who will run the db. 
 
 THE PASSWORD IS HARD CODED IN THE Dockerfile. IT WILL BE BETTER IF YOU REBUILD THE IMAGE FROM 
-Dockerfile CHANGING TO YOUR PASSWORD IN THE CODE OF Dockerfile (IN 2 PLACES). THE PASSWORD IN SAVED IN config FILE IN links_folder.
+Dockerfile CHANGING TO YOUR PASSWORD IN THE CODE OF Dockerfile (IN 2 PLACES). THE PASSWORD IS SAVED IN config FILE IN links_folder (WITHIN CONTAINER).
 
 The environment is for the learning, not for a production. 
 
