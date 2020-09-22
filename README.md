@@ -171,4 +171,4 @@ opam@98da55efced9:~/opam-repository/links_folder$ linx /links_examples/todo.link
 The todo app will start at localhost:8080 on local machine
 
 
-You may pull the image with : 
+You may pull the image with :docker pull dmitri9149/docker_links 
