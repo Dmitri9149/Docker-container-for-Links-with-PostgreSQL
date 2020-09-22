@@ -1,20 +1,15 @@
-### Dockerize Links language
+### Dockerize Links language learning environment (with PostgreSQL) 
 
-This is attempt to make Docker learning environment for Links 
-functional programming language. 
-
-The language is very interesting and has many advanced features. 
-I am especially interested in the web development from within one language 
-(see the examples, when full stack application can be done from within one short file !) , 
-computation with effects and in the support of asynchronous session types and multiagent 
-communication. The Links is potentially very attractive for applications in AI. The big part of 
+The Links language is very interesting and has many advanced features. 
+Ii is possible to make web development from within one language with very dense code, computation with effects and support of asynchronous session types. The Links is potentially very attractive for applications in AI. The big part of 
 AI is about the communication of many agents and is to be abstracted (as much as possible) from the 
 specific details of  web , networks, JavasSript, Java, HTML etc. 
 The level of Links abstraction is quite high. For example HTML forms and data bases are first class 
-citizens. See the short description of the LInks from the language developers.   
+citizens. 
 
-# from https://github.com/links-lang/links 
+#### The short description of the Links from the language developers (see from https://github.com/links-lang/links)
 
+------------------------------------
 Links helps to build modern Ajax-style applications: those with significant client- and server-side components.
 
 A typical, modern web program involves many "tiers": part of the program runs in the web browser, part runs on a web server, and part runs in specialized systems such as a relational database. To create such a program, the programmer must master a myriad of languages: the logic is written in a mixture of Java, Python, and Perl; the presentation in HTML; the GUI behavior in Javascript; and the queries are written in SQL or XQuery. There is no easy way to link these: to be sure, for example, that an HTML form or an SQL query produces the type of data that the Java code expects. This is called the impedance mismatch problem.
@@ -36,34 +31,35 @@ FEATURES
     Polymorphic records and variants
     An effect system for supporting abstraction over database queries whilst guaranteeing that they can be efficiently compiled to SQL
     Handlers for algebraic effects on the server-side and the client-side
-################################################################################
+-----------------------------------------------
 
-But it happens to be not an easy exercise to install the language environment. Firstly it is need to 
-install opam environment for Ocaml, then install a data base (posrgresql in our case).  
+It is not very easy to install the language with full environment. It is installed on the top of OCaml environment + some database installation.   
 Details are spreaded : https://github.com/links-lang/links/wiki/Database-setup ; 
 https://github.com/links-lang/links/blob/master/INSTALL.md ; https://github.com/links-lang/links-tutorial
 
-In the https://github.com/links-lang/links-tutorial it is offered to install the Links to VirtualBox 
+In the https://github.com/links-lang/links-tutorial it is recommended to install the Links to VirtualBox 
 (with Vagrant to automate the process).
 
 Here we try to make Docker environment. It is good to visit the above mentioned referencies and the language manual : https://links-lang.org/quick-help.html
 
 Comments in Dockerfile may also help. 
 
-We start FROM  opam/ocaml2 https://hub.docker.com/r/ocaml/opam2/ and use the refs to add needes packages for
-postgreesql and links installation within container. 
+We start FROM  opam/ocaml2 https://hub.docker.com/r/ocaml/opam2/ and add needed packages. 
 
-Using postgres credential we make new links databae and move all the credentials to opam user. 
+Using postgres credential we make new database with name 'links' and move all the credentials to 'opam' user. 
 
 THE PASSWORD IS HARD CODED IN THE CONTAINER. IT WILL BE BETTER IF YOU REBUILD THE IMAGE FROM 
 Dockerfile CHANGING TO YOUR PASSWORD IN THE CODE OF Dockerfile (IN 2 PLACES). THE PASSWORD IN SAVED IN config FILE IN links_folder.
 
 The environment is for the learning, not for a production. 
 
-Within container you may print '$linx' to go to the interctive environment. 
-With '$linx --config=config' you may test the data base created. See the session below. 
+Within container you may do :
+$linx
+to start the interctive environment. 
+With 
+$linx --config=config 
+you may test the database created. See the session below. 
 
-# interactive output
 ```
 opam@4a6f01f282e5:~/opam-repository/links_examples$ linx --config=config
  _     _ __   _ _  __  ___
@@ -83,12 +79,14 @@ links> query {for (x <-- test) [x]};
 links> 
 opam@4a6f01f282e5:~/opam-repository/links_examples$ 
 ```
-With
+Executing the  script within container: 
  
 $./web_examples 
 
-script the web examples (without database) will be awailable on your specified localhost port 
-(we expect you do something like   $docker run -it -p 8080:8080 image_name) 
+tutorial Links web examples (without database) will be awailable on your specified localhost port 
+(we expect you run the container with something like 
+$docker run -it -p 8080:8080 image_name
+) 
 
 The full set of examples is awaiable at Links language official web page : https://links-lang.org/
 (Demo programms).
@@ -103,15 +101,13 @@ linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
             $OPAM_SWITCH_PREFIX/share/links/examples/webserver/examples-nodb.links
 
 ```
-###############
+---------------------------------------
 
-As an example of using the environment,  from the current folder we did : 
+As an example of using the environment, from the current folder we did: 
 $mkdir links_examples
 $touch todo.links
 
-We can make the todo.links file with the content (the well known todo web application), 
-there is front end and back end parts in the file, both will be started by execution the 
-main() function. The example is from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links 
+And we add the code from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links 
 
 ```
 fun remove(item, items) {
@@ -155,7 +151,7 @@ fun main () {
 main()
 
 ```
-Run the container with the mount : 
+From your machine run : 
 ```
 dmitri@dmitri-Aspire-A314-32:~/docker_linx$ sudo docker run -v $(pwd)/links_examples:/links_examples  -it -p 8080:8080 links_2
  * Restarting PostgreSQL 10 database server                                                             [ OK ]
@@ -167,7 +163,7 @@ opam@98da55efced9:~/opam-repository/links_folder$ linx /links_examples/todo.link
 
 ```
 
-The todo app will start at localhost:8080
+The todo app will start at localhost:8080 on local machine
 
 
 
