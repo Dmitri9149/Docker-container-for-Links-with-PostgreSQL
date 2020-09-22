@@ -4,3 +4,4 @@
 # ignore any file starting with git
 .git*
 .dockerignore
+config
