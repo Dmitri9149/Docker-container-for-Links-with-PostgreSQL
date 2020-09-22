@@ -103,7 +103,7 @@ linx --path=$OPAM_SWITCH_PREFIX/share/links/examples \
 ---------------------------------------
 
 As an example of using the environment, from the project folder we did:  
-$mkdir links_examples 
+$mkdir links_examples   
 $touch links_examples/todo.links
 
 And we add the code from the Links tutorial : https://github.com/links-lang/links-tutorial/blob/master/4_todo/todo.links  
