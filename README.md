@@ -154,7 +154,10 @@ main()
 ```
 From your machine run something like: 
 ```
-dmitri@dmitri-Aspire-A314-32:~/docker_linx$ sudo docker run -v $(pwd)/links_examples:/links_examples  -it -p 8080:8080 links_2
+dmitri@dmitri-Aspire-A314-32:~/docker_linx$ sudo docker run -v $(pwd)/links_examples:/links_examples  -it -p 8080:8080 docker_links  
+
+and you will see the reply from the container:   
+
  * Restarting PostgreSQL 10 database server                                                             [ OK ]
 ```
 
@@ -167,4 +170,4 @@ opam@98da55efced9:~/opam-repository/links_folder$ linx /links_examples/todo.link
 The todo app will start at localhost:8080 on local machine
 
 
-
+You may pull the image with : 
